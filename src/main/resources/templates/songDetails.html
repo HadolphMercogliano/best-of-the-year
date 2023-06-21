@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="fragments :: bootstrap"></th:block>
+  <title>Dettagli di [[${song.getTitle()}]]</title>
+</head>
+<body>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-8">
+      <h1>[[${song.getTitle()}]]</h1>
+      <p>ID: <span th:text="${song.getId()}"></span></p>
+      <p>Titolo: <span th:text="${song.getTitle()}"></span></p>
+      <a href="/songs">Torna alla lista canzoni</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

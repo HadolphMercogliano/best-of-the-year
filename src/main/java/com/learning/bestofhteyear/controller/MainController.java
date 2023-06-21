@@ -5,6 +5,7 @@ import com.learning.bestofhteyear.model.Song;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -28,11 +29,30 @@ public class MainController {
     model.addAttribute("movies", getBestMovies());
     return "movies";
   }
+  @GetMapping("/movies/{id}")
+  public String getMovieById(@PathVariable Integer id, Model model) {
+    Movie selectedMovie = null;
+    for (Movie movie : getBestMovies()) {
+      if (movie.getId() == id) selectedMovie = movie;
+    }
+    model.addAttribute("movie", selectedMovie);
+    return "movieDetails";
+  }
+  
   
   @GetMapping("/songs")
   public String songs(Model model) {
     model.addAttribute("songs", getBestSongs());
     return "songs";
+  }
+  @GetMapping("/songs/{id}")
+  public String getSongById(@PathVariable Integer id, Model model) {
+    Song selectedSong = null;
+    for (Song song : getBestSongs()) {
+      if (song.getId() == id) selectedSong = song;
+    }
+    model.addAttribute("song", selectedSong);
+    return "songDetails";
   }
   
   private List<Movie> getBestMovies() {
@@ -55,25 +75,26 @@ public class MainController {
 
     return songs;
   }
-  
-  private String movieListToString(List<Movie> list) {
-    StringBuilder titles = new StringBuilder();
-    for (int i = 0; i < list.size(); i++) {
-      titles.append(list.get(i).getTitle());
-      if(i < list.size() - 1) {
-        titles.append(", ");
-      }
-    }
-    return titles.toString();
-  }
-  private String songListToString(List<Song> list) {
-    StringBuilder titles = new StringBuilder();
-    for (int i = 0; i < list.size(); i++) {
-      titles.append(list.get(i).getTitle());
-      if(i < list.size() - 1) {
-        titles.append(", ");
-      }
-    }
-    return titles.toString();
-  }
+//  LIST ITEM TO STRING METHODS
+
+//  private String movieListToString(List<Movie> list) {
+//    StringBuilder titles = new StringBuilder();
+//    for (int i = 0; i < list.size(); i++) {
+//      titles.append(list.get(i).getTitle());
+//      if(i < list.size() - 1) {
+//        titles.append(", ");
+//      }
+//    }
+//    return titles.toString();
+//  }
+//  private String songListToString(List<Song> list) {
+//    StringBuilder titles = new StringBuilder();
+//    for (int i = 0; i < list.size(); i++) {
+//      titles.append(list.get(i).getTitle());
+//      if(i < list.size() - 1) {
+//        titles.append(", ");
+//      }
+//    }
+//    return titles.toString();
+//  }
 }

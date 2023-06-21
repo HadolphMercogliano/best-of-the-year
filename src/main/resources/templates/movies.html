@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <th:block th:replace="fragments :: bootstrap"></th:block>
-    <title>Boty Songs</title>
+    <title>Boty Movies</title>
 </head>
 <body>
 <div class="container mt-5">
   <div class="row">
     <div class="col-8">
-      <h1>Best movies</h1>
+      <h1>Best of the year movies</h1>
       <ul>
         <li  th:each="movies : ${movies}">
           <a th:href="@{|/movies/${movies.getId()}|}">[[${movies.getTitle()}]]</a>
