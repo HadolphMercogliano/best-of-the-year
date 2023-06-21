@@ -10,7 +10,11 @@
   <div class="row">
     <div class="col-8">
       <h1>Best of the year songs</h1>
-      <p th:text="${songs}"></p>
+      <ul>
+        <li  th:each="songs : ${songs}">
+          <a th:href="@{|/songs/${songs.getId()}|}">[[${songs.getTitle()}]]</a>
+        </li>
+      </ul>
       <a th:href="@{/}">Home</a>
     </div>
   </div>

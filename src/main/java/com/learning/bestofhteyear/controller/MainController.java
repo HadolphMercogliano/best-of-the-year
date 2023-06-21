@@ -25,13 +25,13 @@ public class MainController {
   }
   @GetMapping("/movies")
   public String movies(Model model) {
-    model.addAttribute("movies", movieListToString(getBestMovies()));
+    model.addAttribute("movies", getBestMovies());
     return "movies";
   }
   
   @GetMapping("/songs")
   public String songs(Model model) {
-    model.addAttribute("songs", songListToString(getBestSongs()));
+    model.addAttribute("songs", getBestSongs());
     return "songs";
   }
   
